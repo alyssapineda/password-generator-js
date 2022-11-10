@@ -16,6 +16,7 @@ let psContainer1 = []
 let psContainer2 = []
 
 function generatePasswords() {
+  clearPassword()
   generatePassword1()
   generatePassword2()
 }
@@ -45,10 +46,10 @@ function generatePassword2() {
 }
 
 function clearPassword() {
-  let passwordEl1 = ""
-  let passwordEl2 = ""
-  let psContainer1 = []
-  let psContainer2 = []
+  passwordEl2.textContent = ""
+  passwordEl1.textContent = ""
+  psContainer2 = []
+  psContainer1 = []
 }
 
 
