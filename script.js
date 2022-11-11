@@ -1,9 +1,7 @@
-//EXTRAS:
+//FUTURE WORK:
 //set password length - user input?
-//Add copy button onclick 
 //Toggle "symbols" and "numbers" on/off
 //add password entropy percentage
-
 
 
 const characters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
@@ -51,5 +49,20 @@ function clearPassword() {
   psContainer2 = []
   psContainer1 = []
 }
+
+//COPY PASSWORD TEXT FUNCTION
+
+function copyPasswordEl1() {
+  const cb = navigator.clipboard;
+  const copiedPassword = document.querySelector('#password-el1');
+  cb.writeText(copiedPassword.innerText).then(() => alert('Password Option 1 copied'));
+}
+
+function copyPasswordEl2() {
+  const cb = navigator.clipboard;
+  const copiedPassword = document.querySelector('#password-el2');
+  cb.writeText(copiedPassword.innerText).then(() => alert('Password Option 2 copied'));
+}
+
 
 
