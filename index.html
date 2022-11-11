@@ -16,6 +16,12 @@
         <h1>Generate a <span class="coloured-title">random password</span></h1>
         <p class="paragraph">Never use an insecure password again.</p>
       </div>
+      <div class="settings-container">
+        <div class="slider-container">
+          <h2 class="settings-header" id="length-title">Password Length:</h2>
+          <input id="slider" type="range" min="4" max="32" value="16" />
+        </div>
+      </div>
 
       <div class="generate-ps-container">
         <button id="generate-ps-btn" onclick="generatePasswords()">Generate Passwords</button>
