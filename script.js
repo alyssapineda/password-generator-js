@@ -6,6 +6,20 @@
 const characters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
 "/"]
 
+const lowerCharacters = 'abcdefghijklmnopqrstuvwxyz'
+const character = {
+    uppercase: lowerCharacters.toUpperCase(),
+    numbers: '0123456789',
+    symbols: '~!@-#$'
+}
+
+const flags = {
+  lowercase:false,
+  uppercase:false,
+  numbers:false,
+  symbols:false
+}
+
 let passwordEl1 = document.querySelector("#password-el1")
 let passwordEl2 = document.querySelector("#password-el2")
 
@@ -28,6 +42,7 @@ function generatePasswords() {
   generatePassword1()
   generatePassword2()
 }
+
 
 function generatePassword1() {
 
@@ -78,30 +93,8 @@ function copyPasswordEl2() {
   cb.writeText(copiedPassword.innerText).then(() => alert('Password Option 2 copied'));
 }
 
-//SETTING PASSWORD LENGTH
-// const sliderProps = {
-// 	fill: "#6D28D9",
-// 	background: "#fff",
-// };
-// // Selecting the Range Slider container which will effect the LENGTH property of the password.
-// const slider = document.querySelector(".slider-container");
-
-// // Text which will show the value of the range slider.
-// const sliderValue = document.querySelector("#length__title");
-
-// // Using Event Listener to apply the fill and also change the value of the text.
-// slider.querySelector("input").addEventListener("input", event => {
-// 	sliderValue.setAttribute("data-length", event.target.value);
-// 	applyFill(event.target);
-// });
-// // Selecting the range input and passing it in the applyFill func.
-// applyFill(slider.querySelector("input"));
-
-// // This function is responsible to create the trailing color and setting the fill.
-// function applyFill(slider) {
-// 	const percentage = (100 * (slider.value - slider.min)) / (slider.max - slider.min);
-// 	const bg = `linear-gradient(90deg, ${sliderProps.fill} ${percentage}%, ${sliderProps.background} ${percentage +
-// 			0.1}%)`;
-// 	slider.style.background = bg;
-// 	sliderValue.setAttribute("data-length", slider.value);
-// }
+//CHECKBOX function
+let uppercaseEl = document.querySelector("uppercase")
+let lowercaseEl = document.querySelector("#lowercase")
+let numbersEl = document.querySelector("#numbers")
+let symbolsEl = document.querySelector("#symbols")
