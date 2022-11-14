@@ -110,6 +110,8 @@ h1 {
 .toggle-label {
   font-size:18px;
   font-weight:100;
+  padding-top:4px;
+  padding-left:160px;
 }
 
 /* BUTTONS */
@@ -230,6 +232,7 @@ h1 {
   background-color: #c5c1d3;
   border-radius: 34px;
   border: 2px solid #b2aebf;
+  cursor:pointer;
 }
 
 .toggle:after {
