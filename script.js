@@ -3,28 +3,61 @@
 //add password entropy percentage
 
 
-const characters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
-"/"]
+// const characters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
+// "/"]
 
-const lowerCharacters = 'abcdefghijklmnopqrstuvwxyz'
 const character = {
-    uppercase: lowerCharacters.toUpperCase(),
-    numbers: '0123456789',
-    symbols: '~!@-#$'
+  upperCase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  lowerCase: "abcdefghijklmnopqrstuvwxyz",
+  number: "0123456789",
+  symbol: "!@#$%^&*()_+~\\`|}{[]:;?><,./-="
 }
 
-const flags = {
-  lowercase:false,
-  uppercase:false,
-  numbers:false,
-  symbols:false
+const getCharacter = [
+  function getupperCase() {
+    return character.upperCase[Math.floor(Math.random() * character.upperCase.length)];
+  },
+  function getlowerCase() {
+    return character.lowerCase[Math.floor(Math.random() * character.lowerCase.length)];
+  },
+  function getNumber() {
+    return character.number[Math.floor(Math.random() * character.number.length)];
+  },
+  function getSymbol() {
+    return character.symbol[Math.floor(Math.random() * character.symbol.length)];
+  }
+]
+
+
+// check if any of these characters are checked by user
+function createPassword1() {
+  const uppercaseLetter = document.querySelector("#uppercase").checked
+  const lowercaseLetter = document.querySelector("#lowercase").checked
+  const number = document.querySelector("#numbers").checked
+  const symbol = document.querySelector("#symbols").checked
+
+  if (uppercaseLetter + lowercaseLetter + number + symbol === 0) {
+    alert("Please check atleast one box!");
+    return;
+  }
+
+  let password1 = ""
+
+  while (slider.value > password1.length) {
+    let characterAdd = getCharacter[Math.floor(Math.random() * getCharacter.length)]
+    let isChecked = document.querySelector(characterAdd.name).checked
+
+    if (isChecked) {
+      password1 += characterAdd()
+    }
+  }
+  passwordEl1.textContent = password1
 }
+
 
 let passwordEl1 = document.querySelector("#password-el1")
-let passwordEl2 = document.querySelector("#password-el2")
 
-let psContainer1 = []
-let psContainer2 = []
+//CHECK PASSWORD LENGTH 
 
 let passwordLength = document.querySelector("#length-title")
 let range = document.querySelector('#slider')
@@ -37,46 +70,16 @@ range.addEventListener('mouseup', function () {
   }
 })
 
+// GENERATE PASSWORD ON CLICK
+
 function generatePasswords() {
   clearPassword()
-  generatePassword1()
-  generatePassword2()
+  createPassword1()
 }
 
-
-function generatePassword1() {
-
-
-  for (let i = 0;i < slider.value; i++) {
-    let randomCharacter = Math.floor(Math.random() * characters.length)
-    psContainer1.push(characters[randomCharacter])
-  }
-  
-  for (let i = 0;i <psContainer1.length;i++) {
-    passwordEl1.textContent += psContainer1[i]
-  }
-  
-}
-
-function generatePassword2() {
-
-let range = document.getElementsByTagName('slider');
-  for (let i = 0;i < slider.value; i++) {
-    let randomCharacter = Math.floor(Math.random() * characters.length)
-    psContainer2.push(characters[randomCharacter])
-  }
-
-  for (let i = 0;i <psContainer2.length;i++) {
-    passwordEl2.textContent += psContainer2[i]
-  }
-  
-}
 
 function clearPassword() {
-  passwordEl2.textContent = ""
   passwordEl1.textContent = ""
-  psContainer2 = []
-  psContainer1 = []
 }
 
 //COPY PASSWORD TEXT FUNCTION
@@ -87,14 +90,6 @@ function copyPasswordEl1() {
   cb.writeText(copiedPassword.innerText).then(() => alert('Password Option 1 copied'));
 }
 
-function copyPasswordEl2() {
-  const cb = navigator.clipboard;
-  const copiedPassword = document.querySelector('#password-el2');
-  cb.writeText(copiedPassword.innerText).then(() => alert('Password Option 2 copied'));
-}
+
 
 //CHECKBOX function
-let uppercaseEl = document.querySelector("uppercase")
-let lowercaseEl = document.querySelector("#lowercase")
-let numbersEl = document.querySelector("#numbers")
-let symbolsEl = document.querySelector("#symbols")
